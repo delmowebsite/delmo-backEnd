@@ -1,3 +1,9 @@
+import { defineConfig } from '@prisma/config';
+
+export default defineConfig({
+  schema: './prisma/schema/schema.prisma',
+});
+
 // import { defineConfig, env } from 'prisma/config';
 //
 // export default defineConfig({
