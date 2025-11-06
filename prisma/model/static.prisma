@@ -1,0 +1,8 @@
+model Role {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        RoleType @unique
+  persianName String
+  users       User[]
+
+  @@map("statics_roles")
+}
