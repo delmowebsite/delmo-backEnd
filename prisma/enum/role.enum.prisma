@@ -1,6 +1,0 @@
-enum RoleType {
-  USER
-  BARBER
-  ADMIN
-  SUPER_ADMIN
-}

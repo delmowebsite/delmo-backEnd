@@ -7,3 +7,38 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  firstName    String
+  lastName     String
+  phoneNumber  String
+  nationalCode String?
+  roleId       String    @db.ObjectId
+  role         Role      @relation(fields: [roleId], references: [id])
+  createdAt    DateTime  @default(now()) @db.Date
+  updatedAt    DateTime? @updatedAt @db.Date
+  deletedAt    DateTime? @db.Date
+
+  @@map("users")
+}
+
+// statics
+
+model Role {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        RoleType @unique
+  persianName String
+  users       User[]
+
+  @@map("statics_roles")
+}
+
+// enums
+
+enum RoleType {
+  USER
+  BARBER
+  ADMIN
+  SUPER_ADMIN
+}
